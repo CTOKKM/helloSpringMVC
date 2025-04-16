@@ -2,15 +2,31 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--
+        지정된 패키지를 스캔하여 @Repository, @Component 등이 붙은 클래스를 자동으로 Bean으로 등록함
+        여기서는 DAO 계층(kr.ac.hansung.cse.dao)을 스캔
+    -->
     <context:component-scan base-package="kr.ac.hansung.cse.dao" />
 
-    <context:property-placeholder
-            location="/WEB-INF/props/jdbc.properties" />
+    <!--
+        JDBC 접속 정보를 외부 파일로부터 불러옴 (jdbc.properties)
+        이 설정이 있어야 ${jdbc.url} 같은 프로퍼티를 사용할 수 있음
+    -->
+    <context:property-placeholder location="/WEB-INF/props/jdbc.properties" />
 
+    <!--
+        DataSource 빈 설정: 데이터베이스와 연결을 관리해주는 객체
+        여기서는 Apache Commons DBCP2의 BasicDataSource 사용 + xml 사용
+       destroy-method="close" → 서버 종료 시 커넥션 정리
+    -->
     <bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource"
           destroy-method="close">
+
+        <!-- jdbc.properties 파일로부터 값을 주입받음 -->
+        <!-- placeholder를 통해 변수 지정 -->
         <property name="driverClassName" value="${jdbc.driverClassName}" />
         <property name="url" value="${jdbc.url}" />
         <property name="username" value="${jdbc.username}" />

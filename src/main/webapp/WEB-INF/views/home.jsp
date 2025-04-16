@@ -11,7 +11,14 @@
     <title>$Title$</title>
   </head>
   <body>
-  <p> <a href="${pageContext.request.contextPath}/offers"> Show current offers</a></p>
-  <p> <a href="${pageContext.request.contextPath}/createoffer"> Add a new offer</a></p>
+  <!-- 현재 애플리케이션의 컨텍스트 경로를 기준으로 /offers 페이지로 이동하는 링크 생성 -->
+  <p>
+    <a href="${pageContext.request.contextPath}/offers"> Show current offers</a>
+  </p>
+
+  <!-- 현재 애플리케이션의 컨텍스트 경로를 기준으로 /createoffer 페이지로 이동하는 링크 생성 -->
+  <p>
+    <a href="${pageContext.request.contextPath}/createoffer"> Add a new offer</a>
+  </p>
   </body>
 </html>
