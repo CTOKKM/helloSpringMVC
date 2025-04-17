@@ -1,58 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Maven 프로젝트를 정의하는 기본 루트 태그 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Maven의 POM 모델 버전 -->
     <modelVersion>4.0.0</modelVersion>
 
+    <!-- 그룹 ID: 보통 도메인 주소를 뒤집은 형태로 작성 -->
     <groupId>kr.ac.hansung.cse</groupId>
+
+    <!-- 프로젝트 ID -->
     <artifactId>helloSpringMVC</artifactId>
+
+    <!-- 프로젝트 버전 -->
     <version>1.0-SNAPSHOT</version>
+
+    <!-- WAR 파일로 패키징 (웹 애플리케이션 배포용) -->
     <packaging>war</packaging>
 
+    <!-- 빌드 시 사용할 설정 값 정의 -->
     <properties>
+        <!-- 소스 파일 인코딩 방식 -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Java 컴파일러 버전 (Java 21 사용) -->
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
+
+        <!-- Spring 프레임워크, AOP, 로깅 버전을 변수로 정의 -->
         <org.springframework-version>6.2.3</org.springframework-version>
         <org.aspectj-version>1.9.21</org.aspectj-version>
         <org.slf4j-version>2.0.12</org.slf4j-version>
     </properties>
 
     <dependencies>
-        <!-- Spring Web MVC -->
+        <!-- Spring Web MVC: 컨트롤러, 뷰 처리 등 웹 기능 제공 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
 
+        <!-- Spring JDBC: DB 연결과 SQL 실행을 위한 기능 제공 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
             <version>${org.springframework-version}</version>
         </dependency>
 
+        <!-- MySQL JDBC 드라이버: MySQL DB와 연결하기 위한 드라이버 -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.32</version>
         </dependency>
 
+        <!-- Commons DBCP2: 커넥션 풀을 관리해주는 라이브러리 -->
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-dbcp2</artifactId>
             <version>2.12.0</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+        <!-- Hibernate Validator: Bean Validation을 위한 라이브러리 -->
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
             <version>7.0.5.Final</version>
         </dependency>
 
-
-        <!-- Lombok -->
+        <!-- Lombok: Getter/Setter 등 반복 코드 자동 생성 (컴파일 시만 필요) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -60,13 +78,14 @@
             <scope>provided</scope>
         </dependency>
 
-        <!-- Logging -->
+        <!-- SLF4J API: 로깅을 위한 추상화된 인터페이스 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${org.slf4j-version}</version>
         </dependency>
 
+        <!-- JCL -> SLF4J 브릿지: commons-logging을 SLF4J로 변환 -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>jcl-over-slf4j</artifactId>
@@ -74,6 +93,7 @@
             <scope>runtime</scope>
         </dependency>
 
+        <!-- Logback: 실제 로깅을 처리해주는 구현체 -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
@@ -81,7 +101,7 @@
             <scope>runtime</scope>
         </dependency>
 
-        <!-- Jakarta EE -->
+        <!-- Servlet API (Jakarta EE): 서블릿 사용을 위한 라이브러리, 톰캣 등에서 제공되므로 provided로 설정 -->
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
@@ -89,6 +109,7 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- JSP API: JSP 관련 기능 제공 -->
         <dependency>
             <groupId>jakarta.servlet.jsp</groupId>
             <artifactId>jakarta.servlet.jsp-api</artifactId>
@@ -96,19 +117,21 @@
             <scope>provided</scope>
         </dependency>
 
+        <!-- JSTL 태그 라이브러리 (JSP에서 <c:...> 태그 사용 가능) -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
 
+        <!-- JSTL의 구현체 (GlassFish에서 제공하는 JSP용 JSTL) -->
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>2.0.0</version>
         </dependency>
 
-        <!-- Test (JUnit 5) -->
+        <!-- JUnit 5: 테스트 프레임워크 -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter</artifactId>

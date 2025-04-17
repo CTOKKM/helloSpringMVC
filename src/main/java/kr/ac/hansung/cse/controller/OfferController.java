@@ -44,6 +44,8 @@ public class OfferController {
     // 유효성 검증 실패 시에는 다시 createoffer.jsp로 이동
     @PostMapping("docreate")
     public String doCreate(Model model, @Valid Offer offer, BindingResult result) {
+        System.out.println(offer);
+
         // 폼 유효성 검사가 실패했을 경우 오류 메시지를 출력하고 다시 입력 폼으로 이동
         if(result.hasErrors()) {
             System.out.println("== Form data does not validated ==");
